@@ -30,4 +30,5 @@ public class playerMovement : MonoBehaviour
         // rb.MovePosition(transform.position + moveAmount);
         transform.Translate(velocity);
     }
+    
 }
