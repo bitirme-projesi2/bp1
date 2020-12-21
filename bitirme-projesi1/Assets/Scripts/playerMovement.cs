@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
+    public bool key = true;
     private Rigidbody rb;
     public float speed = 4f;
     Vector3 input;
