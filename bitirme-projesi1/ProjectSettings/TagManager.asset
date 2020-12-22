@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Landscape
+  - Border
+  - Home
+  - Water Well
   layers:
   - Default
   - TransparentFX
