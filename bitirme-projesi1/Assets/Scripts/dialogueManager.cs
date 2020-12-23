@@ -3,16 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class dialogueManager : MonoBehaviour
 {
-    public Text button;
+    public TextMeshProUGUI dialogue;
     public string npcName;
-    public Text dialogueName;
+    public TextMeshProUGUI dialogueName;
     Queue<string> sentences;
 
     void Start()
     {
         sentences = new Queue<string>();
+ 
     }
     public void startDialogue(dialogue dialogue,string name)
     {
@@ -44,7 +46,7 @@ public class dialogueManager : MonoBehaviour
             dialogueName.text = npcName;
             sentence = sentence.Substring(1);
         }
-        button.text = sentence;
+        dialogue.text = sentence;
    
 
 
@@ -52,5 +54,6 @@ public class dialogueManager : MonoBehaviour
     public void endDialogue()
     {
         FindObjectOfType<triggerDialogue>().dialogueCanvas.enabled=false;
+       
     }
 }

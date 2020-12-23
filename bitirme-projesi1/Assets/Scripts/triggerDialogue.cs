@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class triggerDialogue : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class triggerDialogue : MonoBehaviour
     public Behaviour dialogueCanvas;
     public Behaviour interactionCanvas;
     bool isTrigger = false;
+
     public GameObject player;
     private void Start()
     {
@@ -18,8 +20,9 @@ public class triggerDialogue : MonoBehaviour
     {
         if (other.tag == "Player") {
             isTrigger = true;
-            interactionCanvas.enabled = true;
-            interactionCanvas.transform.GetChild(0).GetComponent<Text>().text = this.name +" ile Konuşmak için e bas";
+        
+            if(!dialogueCanvas.enabled) interactionCanvas.enabled = true;
+            interactionCanvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = this.name +" ile Konuşmak için e bas";
         }
 
     }
@@ -34,10 +37,12 @@ public class triggerDialogue : MonoBehaviour
     }
     private void Update()
     {
+     
         if (isTrigger)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+   
                 interactionCanvas.enabled = false;
                 FindObjectOfType<dialogueManager>().startDialogue(dialogue,this.name);
                 dialogueCanvas.enabled = true;
