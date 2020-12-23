@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,9 +19,8 @@ public class playerMovement : MonoBehaviour
     private void Update()
     {
         input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-       
-        
     }
+   
     private void FixedUpdate()
     {
         moveCharacter();
@@ -28,8 +28,8 @@ public class playerMovement : MonoBehaviour
         {
             anm.SetBool("isHeMoving", false);
         }
-    
-    }    
+    }  
+
     private void moveCharacter()
     {
         Vector3 inputt = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
@@ -49,7 +49,10 @@ public class playerMovement : MonoBehaviour
             anm.SetBool("isHeMoving", true);
         }
         Vector3 moveAmount = velocity * Time.deltaTime;
-        transform.Translate(velocity);      
+        transform.Translate(velocity);
+
+        
     }
-    
+
+   
 }
