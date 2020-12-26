@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class chestManager : MonoBehaviour
 {
+    public ParticleSystem prt,prtPrev;
     bool isTrigger = false;
     public GameObject player;
     private void OnTriggerEnter(Collider other)
@@ -21,8 +22,11 @@ public class chestManager : MonoBehaviour
         if (isTrigger) {
             if (Input.GetKeyDown(KeyCode.E) )
             {
-                Debug.Log("Chess opening");
+                
+                Debug.Log("Chest opening");
                 transform.Rotate(new Vector3(-30,0,0));
+                prtPrev.Stop();
+                prt.Play();
             }
         }
     }
