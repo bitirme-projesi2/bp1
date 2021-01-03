@@ -18,7 +18,7 @@ public class cameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        takeAim();
+        //takeAim();
     }
     private void LateUpdate()
     {
@@ -30,6 +30,9 @@ public class cameraController : MonoBehaviour
         rotateY -= Input.GetAxis("Mouse Y") * sensivity;
         rotateY = Mathf.Clamp(rotateY, -35, 60);
         transform.LookAt(Target);
+
+
+        
         Target.rotation = Quaternion.Euler(rotateY, rotateX, 0);
         Player.rotation = Quaternion.Euler(0, rotateX, 0);
     }
