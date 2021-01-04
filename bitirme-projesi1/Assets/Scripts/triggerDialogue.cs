@@ -42,7 +42,6 @@ public class triggerDialogue : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-   
                 interactionCanvas.enabled = false;
                 FindObjectOfType<dialogueManager>().startDialogue(dialogue,this.name);
                 dialogueCanvas.enabled = true;

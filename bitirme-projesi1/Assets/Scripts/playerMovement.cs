@@ -34,11 +34,11 @@ public class playerMovement : MonoBehaviour
         if (input == Vector3.zero)
         {
             anm.SetBool("isHeMoving", false);
+            anm.SetBool("isHeRuning", false);
         }
     }  
     private void moveCharacter()
-    {
-        Vector3 inputt = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+    { 
         Vector3 direction = input.normalized;
         Vector3 velocity = speed * direction;
 
@@ -46,7 +46,7 @@ public class playerMovement : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                runSpeed = Mathf.MoveTowards(speed, runSpeed, 0.05f);
+          
                 velocity = runSpeed * direction;
                 anm.SetBool("isHeMoving", false);
                 anm.SetBool("isHeRuning", true);
@@ -57,9 +57,21 @@ public class playerMovement : MonoBehaviour
                 anm.SetBool("isHeMoving", true);
             }
         }
-        Vector3 moveAmount = velocity * Time.deltaTime;
-        transform.Translate(velocity);
+        transform.Translate(velocity * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.C)) Crouch();
+     
+
+       
     }
+
+    void Crouch()
+    {
+        anm.SetBool("isHeMoving", false);
+        anm.SetBool("isHeCrouch", !anm.GetBool("isHeCrouch"));
+    }
+
+
 
     void armament()
     {

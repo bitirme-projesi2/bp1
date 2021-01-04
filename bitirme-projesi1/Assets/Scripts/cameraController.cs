@@ -9,19 +9,22 @@ public class cameraController : MonoBehaviour
     public float rotateY = 0;
     public Transform Target, Player;
     bool anm;
+    Quaternion my_rotation;
     public Vector3 offset;
     void Start()
     {
-       
+        my_rotation = this.transform.rotation;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         //takeAim();
     }
     private void LateUpdate()
     {
+        this.transform.rotation = my_rotation;
         moveCamera();
     }
     void moveCamera()
