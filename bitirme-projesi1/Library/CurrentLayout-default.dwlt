@@ -115,7 +115,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 64
+  controlID: 126
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 65
+  controlID: 127
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 66
+  controlID: 128
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -344,11 +344,11 @@ MonoBehaviour:
     m_DrawArea:
       serializedVersion: 2
       x: 0
-      y: 21
+      y: 0
       width: 828
-      height: 553
+      height: 574
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 414, y: 276.5}
+    m_Translation: {x: 414, y: 287}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -356,9 +356,9 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
       x: -414
-      y: -276.5
+      y: -287
       width: 828
-      height: 553
+      height: 574
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 828, y: 574}
@@ -395,10 +395,10 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 375}
-      m_SelectedIDs: ce690000
-      m_LastClickedID: 27086
-      m_ExpandedIDs: 1ea4ffff6afbffffd46300008464000014650000e0680000
+      scrollPos: {x: 0, y: 23}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 22b6ffff6afbffff566400009464000036650000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -484,9 +484,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -355.07666, y: -277.27448, z: 863.1825}
+    m_Target: {x: -217.42876, y: 10.174683, z: 71.82463}
     speed: 2
-    m_Value: {x: -355.07666, y: -277.27448, z: 863.1825}
+    m_Value: {x: -217.42876, y: 10.174683, z: 71.82463}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -532,13 +532,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.44226173, y: 0.3712011, z: -0.20796853, w: 0.78958}
+    m_Target: {x: 0.2139232, y: 0.09414886, z: -0.020700464, w: 0.9721392}
     speed: 2
-    m_Value: {x: 0.43350223, y: 0.38340607, z: -0.2110422, w: 0.78774154}
+    m_Value: {x: 0.21388012, y: 0.09560169, z: -0.021020167, w: 0.9719433}
   m_Size:
-    m_Target: 1135.1481
+    m_Target: 96.65712
     speed: 2
-    m_Value: 1086.2661
+    m_Value: 101.21164
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -717,20 +717,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/ExternalAssets/Polylised - Medieval Desert City/Prefabs/prefab_unique_buildings
+    - Assets/ExternalAssets/Polylised - Medieval Desert City/Prefabs/prefab_civilian_buildings
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/ExternalAssets/Polylised - Medieval Desert City/Prefabs/prefab_unique_buildings
+  - Assets/ExternalAssets/Polylised - Medieval Desert City/Prefabs/prefab_civilian_buildings
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\alper\Documents\GitHub\bp1\bitirme-projesi1
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 105}
-    m_SelectedIDs: 407d0000
-    m_LastClickedID: 32064
-    m_ExpandedIDs: 00000000f4780000f6780000fa780000507b0000d47b00001e7c00001e7f00006880000000ca9a3b
+    m_SelectedIDs: ca790000
+    m_LastClickedID: 31178
+    m_ExpandedIDs: 0000000096790000987900009e790000b6790000b879000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -758,7 +758,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 31}
     m_SelectedIDs: ee61feff
     m_LastClickedID: -106002
-    m_ExpandedIDs: 00000000f4780000f6780000
+    m_ExpandedIDs: 000000009679000098790000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
