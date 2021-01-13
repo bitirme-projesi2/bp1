@@ -10,17 +10,22 @@ public class cameraController : MonoBehaviour
     public Transform Target, Player;
     bool anm;
     Quaternion my_rotation;
+    public GameObject neck;
     public Vector3 offset;
+   
+
+
     void Start()
     {
         my_rotation = this.transform.rotation;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        //takeAim();
+        takeAim();
     }
     private void LateUpdate()
     {
@@ -31,11 +36,9 @@ public class cameraController : MonoBehaviour
     {
         rotateX += Input.GetAxis("Mouse X") * sensivity;
         rotateY -= Input.GetAxis("Mouse Y") * sensivity;
-        rotateY = Mathf.Clamp(rotateY, -35, 60);
+        rotateY = Mathf.Clamp(rotateY, -50, 40);
+        //Target.position = neck.transform.position;
         transform.LookAt(Target);
-
-
-        
         Target.rotation = Quaternion.Euler(rotateY, rotateX, 0);
         Player.rotation = Quaternion.Euler(0, rotateX, 0);
     }
@@ -44,8 +47,10 @@ public class cameraController : MonoBehaviour
     void takeAim()
     {
         anm = FindObjectOfType<playerMovement>().isArmed;
-        if (anm && Input.GetKey(KeyCode.Mouse1))
+        Debug.Log(anm);
+        if (anm & Input.GetKey(KeyCode.Mouse1))
         {
+            Debug.Log("bb");
             Target.transform.localPosition = offset;
                
         }

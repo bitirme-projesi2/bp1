@@ -11,26 +11,25 @@ public class playerMovement : MonoBehaviour
     public float speed = 4f;
     public float runSpeed = 0.5f;
     Vector3 input;
-    GameObject weaponLocation;
-    GameObject weapons;
-    public bool isArmed;
+    public bool isArmed=true;
+    public GameObject bow;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         anm = GetComponent<Animator>();
-        weaponLocation = GameObject.Find("Armament");
-        weapons =GameObject.Find("firstBow");
-
+      
     }
     private void Update()
     {
         input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        armament();
+        // armament();
+        bow.transform.localScale = new Vector3(0.4f, 0.9f, 0.75f);
     }
    
     private void FixedUpdate()
     {
         moveCharacter();
+        isArmed = true;
         if (input == Vector3.zero)
         {
             anm.SetBool("isHeMoving", false);

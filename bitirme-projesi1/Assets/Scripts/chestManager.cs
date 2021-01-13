@@ -6,7 +6,6 @@ public class chestManager : MonoBehaviour
 {
     public ParticleSystem prt,prtPrev;
     bool isTrigger = false;
-    public GameObject player;
     private void OnTriggerEnter(Collider other)
     {
         isTrigger = true;
@@ -21,12 +20,12 @@ public class chestManager : MonoBehaviour
     {
         if (isTrigger) {
             if (Input.GetKeyDown(KeyCode.E) )
-            {
-                
-                Debug.Log("Chest opening");
+            { 
                 transform.Rotate(new Vector3(-30,0,0));
                 prtPrev.Stop();
                 prt.Play();
+                FindObjectOfType<armamentController>().armament();
+
             }
         }
     }
