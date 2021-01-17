@@ -83,7 +83,15 @@ ModelImporter:
           preInfinity: 2
           postInfinity: 2
           rotationOrder: 4
-      events: []
+      events:
+      - time: 0.2806324
+        functionName: Equip
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: dabe58df243cb824d9f5555bf7e963bf,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

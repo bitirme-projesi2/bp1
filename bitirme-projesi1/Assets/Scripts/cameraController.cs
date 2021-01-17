@@ -10,22 +10,29 @@ public class cameraController : MonoBehaviour
     public Transform Target, Player;
     bool anm;
     Quaternion my_rotation;
-    public GameObject neck;
     public Vector3 offset;
-   
+    public Vector3 targetOffset;
+    public float armedRotation;
+    Animator playerAnimator;
 
+
+
+    public int attackRate=1;
+    float nextAttackTime=0;
 
     void Start()
     {
         my_rotation = this.transform.rotation;
-
+        armedRotation = 0;
+        playerAnimator = FindObjectOfType<playerMovement>().GetComponent<Animator>();
+        playerAnimator.SetBool("fixDraw",true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         takeAim();
+ 
     }
     private void LateUpdate()
     {
@@ -37,26 +44,43 @@ public class cameraController : MonoBehaviour
         rotateX += Input.GetAxis("Mouse X") * sensivity;
         rotateY -= Input.GetAxis("Mouse Y") * sensivity;
         rotateY = Mathf.Clamp(rotateY, -50, 40);
-        //Target.position = neck.transform.position;
         transform.LookAt(Target);
+        Target.position = Player.position + targetOffset;
         Target.rotation = Quaternion.Euler(rotateY, rotateX, 0);
-        Player.rotation = Quaternion.Euler(0, rotateX, 0);
+        Player.rotation = Quaternion.Euler(0, rotateX+armedRotation, 0);
     }
 
 
     void takeAim()
     {
         anm = FindObjectOfType<playerMovement>().isArmed;
-        Debug.Log(anm);
         if (anm & Input.GetKey(KeyCode.Mouse1))
         {
-            Debug.Log("bb");
-            Target.transform.localPosition = offset;
-               
+            targetOffset = new Vector3(2, 3, 0.5f);
+            playerAnimator.SetBool("Draw", true);
+            if (Time.time >= nextAttackTime)
+            {
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+
+                    playerAnimator.SetBool("fire", true);
+                    nextAttackTime = Time.time + 1;
+                    Debug.Log("atacktime " + nextAttackTime);
+                    Debug.Log("time  " + Time.time);
+
+                }
+
+            }
         }
         else
         {
-            Target.transform.localPosition = new Vector3(0,4.04f,0);
+            targetOffset = new Vector3(0, 3, 0.5f);
+            playerAnimator.SetBool("Draw", false);
+            playerAnimator.SetBool("fixDraw", true);
         }
     }
+
+
+   
+
 }

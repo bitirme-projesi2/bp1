@@ -11,8 +11,12 @@ public class playerMovement : MonoBehaviour
     public float speed = 4f;
     public float runSpeed = 0.5f;
     Vector3 input;
-    public bool isArmed=true;
+    public bool isArmed;
     public GameObject bow;
+    Vector3 fixInput;
+    public GameObject arrow;
+    GameObject arr;
+    public Transform fireLocation;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -22,14 +26,21 @@ public class playerMovement : MonoBehaviour
     private void Update()
     {
         input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        // armament();
-        bow.transform.localScale = new Vector3(0.4f, 0.9f, 0.75f);
+        fixInput= new Vector3(Input.GetAxisRaw("Vertical"), 0, Input.GetAxisRaw("Horizontal"));
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Basıldı");
+            FireArrow();
+        }
     }
-   
+    void FireArrow()
+    {
+        arr = Instantiate(arrow, fireLocation);
+
+    }
     private void FixedUpdate()
     {
         moveCharacter();
-        isArmed = true;
         if (input == Vector3.zero)
         {
             anm.SetBool("isHeMoving", false);
@@ -37,8 +48,10 @@ public class playerMovement : MonoBehaviour
         }
     }  
     private void moveCharacter()
-    { 
-        Vector3 direction = input.normalized;
+    {
+        Vector3 direction;
+        if (isArmed) direction = -fixInput.normalized;
+        else direction = input.normalized;
         Vector3 velocity = speed * direction;
 
         if (velocity != Vector3.zero)
@@ -69,24 +82,4 @@ public class playerMovement : MonoBehaviour
         anm.SetBool("isHeMoving", false);
         anm.SetBool("isHeCrouch", !anm.GetBool("isHeCrouch"));
     }
-
-
-
-    void armament()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            anm.SetBool("takeweapon", true);
-            anm.SetBool("isArmed", true);
-            isArmed = anm.GetBool("isArmed");
-            Invoke("disarm",1);
-        }
-    }
-    void disarm()
-    {
-        anm.SetBool("takeweapon", false);
-      
-    }
-
-   
 }

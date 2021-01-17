@@ -1,67 +1,84 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class armamentController : MonoBehaviour
 {
-
-
-    public Transform player;
     public GameObject weapon;
     GameObject scaleWeapon;
-    public Transform hand;
-    bool isArmed;
-    public Animator anm;
 
-    // Start is called before the first frame update
+    public Transform Target;
+    public Transform player;
+    public Transform hand;
+  
+    public Animator anm;
+    bool isArmed;
+
     void Start()
     {
-
+        anm.SetBool("isUnEquip", true);
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R)) SwitchEquipmentState();
+        if (isArmed && scaleWeapon !=null)
         {
-            if (!isArmed) equipBow();
-            else disarm();
-            
+            scaleWeapon.transform.position = hand.position;
+            scaleWeapon.transform.rotation = hand.rotation;    
         }
+        else if(scaleWeapon !=null)
+        {
+            scaleWeapon.transform.position = player.position;
+            scaleWeapon.transform.rotation = player.rotation;
+        }
+   
     }
 
+    private void Equip()
+    {
+        anm.SetBool("isArmed", true);
+        isArmed = true;
+        armedWalk();
+    }
+
+    void unEquip()
+    {
+        
+        isArmed = false;
+        unArmed();
+    }
+    void isArmedFix()
+    {
+        anm.SetBool("isArmed", false);
+    }
+    void SwitchEquipmentState()
+    {
+        anm.SetBool("isEquip",!anm.GetBool("isEquip"));
+        anm.SetBool("isUnEquip", !anm.GetBool("isUnEquip"));
+        
+           
+    }
     public void armament()
     {
         scaleWeapon =Instantiate(weapon, player);
-        scaleWeapon.transform.localPosition = new Vector3(-0.14f, 0, -0.22f);
-        scaleWeapon.transform.localRotation = new Quaternion(0, -73.28f, 0,500);
-        scaleWeapon.transform.GetChild(1).localScale = new Vector3(0.4f,0.9f,0.75f);
-        Debug.Log("Çalışıyor");
-            
+        scaleWeapon.transform.GetChild(1).localScale = new Vector3(0.4f,0.9f,0.75f);          
+    }
+    public void armedWalk()
+    {
+        FindObjectOfType<cameraController>().armedRotation = 60;
+        FindObjectOfType<playerMovement>().isArmed = true;
+    }
+    public void unArmed()
+    {
+        FindObjectOfType<cameraController>().armedRotation = 0;
+        FindObjectOfType<playerMovement>().isArmed = false;
+    }
+    void fixDraw()
+    {
+       anm.SetBool("fixDraw", false);
+        anm.SetBool("fire", false);
     }
 
-    void equipBow()
-    {
-        anm.SetBool("isArmed", true);
-        scaleWeapon.transform.SetParent(hand);
-        isArmed = true;
-        Invoke("setAnm", 0.75f);
-        scaleWeapon.transform.localPosition = new Vector3(-0.01f, 0.17f, 0.06f);
-        scaleWeapon.transform.rotation = new Quaternion(-52.39f, 151.47f, -56.86f, 0);
-       
-
-      
-    }
-    void disarm()
-    {
-        scaleWeapon.transform.localPosition = new Vector3(-0.14f, 0, -0.22f);
-        scaleWeapon.transform.rotation = new Quaternion(0, -73.28f, 0, 0);
-        scaleWeapon.transform.GetChild(1).localScale = new Vector3(0.4f, 0.9f, 0.75f);
-        isArmed = false;
-    }
-    void setAnm()
-    {
-
-        anm.SetBool("isEquip", true);
-    }
 }
