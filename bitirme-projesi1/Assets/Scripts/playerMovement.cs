@@ -35,8 +35,9 @@ public class playerMovement : MonoBehaviour
     }
     void FireArrow()
     {
-        arr = Instantiate(arrow, fireLocation);
-
+        arr = Instantiate(arrow,fireLocation.position, fireLocation.rotation * Quaternion.Euler(0f, 270f, 0f));
+        arr.GetComponent<Rigidbody>().velocity = transform.right * 50 * -1;
+        Destroy(arr, 8f);
     }
     private void FixedUpdate()
     {

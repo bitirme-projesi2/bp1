@@ -7,9 +7,12 @@ public class cameraController : MonoBehaviour
     public float sensivity = 1;
     public float rotateX = 0;
     public float rotateY = 0;
-    public Transform Target, Player;
+    public Transform Target, Player,aimView;
     bool anm;
+
     Quaternion my_rotation;
+    Vector3 my_position;
+
     public Vector3 offset;
     public Vector3 targetOffset;
     public float armedRotation;
@@ -22,6 +25,7 @@ public class cameraController : MonoBehaviour
 
     void Start()
     {
+        my_position = this.transform.position;
         my_rotation = this.transform.rotation;
         armedRotation = 0;
         playerAnimator = FindObjectOfType<playerMovement>().GetComponent<Animator>();
@@ -41,6 +45,7 @@ public class cameraController : MonoBehaviour
     }
     void moveCamera()
     {
+       
         rotateX += Input.GetAxis("Mouse X") * sensivity;
         rotateY -= Input.GetAxis("Mouse Y") * sensivity;
         rotateY = Mathf.Clamp(rotateY, -50, 40);
@@ -48,6 +53,7 @@ public class cameraController : MonoBehaviour
         Target.position = Player.position + targetOffset;
         Target.rotation = Quaternion.Euler(rotateY, rotateX, 0);
         Player.rotation = Quaternion.Euler(0, rotateX+armedRotation, 0);
+       
     }
 
 
@@ -57,19 +63,16 @@ public class cameraController : MonoBehaviour
         if (anm & Input.GetKey(KeyCode.Mouse1))
         {
             targetOffset = new Vector3(2, 3, 0.5f);
+   
+            Target.localPosition = aimView.localPosition;
             playerAnimator.SetBool("Draw", true);
             if (Time.time >= nextAttackTime)
             {
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-
                     playerAnimator.SetBool("fire", true);
                     nextAttackTime = Time.time + 1;
-                    Debug.Log("atacktime " + nextAttackTime);
-                    Debug.Log("time  " + Time.time);
-
                 }
-
             }
         }
         else
